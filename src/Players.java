@@ -1,16 +1,20 @@
 import java.util.Scanner;
-
 class Players extends GameEntity {
     private int playerMoney;
     private int betAmount;
     private String playerName;
     private int betNumber;
+    private boolean isVIP;  // Нова змінна для визначення, чи є гравець VIP
+
 
     Players(String name, int money) {
         this.playerName = name;
         this.playerMoney = money;
+        this.isVIP = false;  // Ініціалізація нової змінної
+
     }
 
+    // Геттери та сеттери для усіх змінних
     int getPlayerMoney() {
         return playerMoney;
     }
@@ -43,6 +47,11 @@ class Players extends GameEntity {
         this.playerName = name;
     }
 
+    // Метод для збільшення значення однієї змінної удвічі
+    void doubleMoney() {
+        this.playerMoney *= 2;
+    }
+
     @Override
     void processInput(double data) {
         System.out.println("Processing input for Players with data: " + data);
@@ -52,6 +61,7 @@ class Players extends GameEntity {
         player.setPlayerName("Нове ім'я");
         player.setPlayerMoney(9999);
         player.setBetAmount(123);
+        player.setVIP(true);  // Встановлення значення нової змінної
         return player;
     }
 
@@ -87,5 +97,11 @@ class Players extends GameEntity {
             // Рекурсивний виклик методу
             recursiveMethod("Recursive call", recursionDepth - 1);
         }
+    }
+
+    // Метод, що використовує змінні екземплярів інших класів
+    void useOtherClassVariables(Croupier croupier) {
+        int croupierBalance = croupier.getCasinoBalance();
+        System.out.println(playerName + " використовує баланс круп'є: " + croupierBalance);
     }
 }

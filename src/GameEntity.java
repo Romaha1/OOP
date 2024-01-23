@@ -13,4 +13,7 @@ abstract class GameEntity {
         // Виклик будь-якої змінної з іншого об'єкта
         System.out.println("Other entity's variable: " + otherEntity.getClass().getSimpleName());
     }
+
+    protected void setVIP(boolean b) {
+    }
 }

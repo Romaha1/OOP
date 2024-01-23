@@ -1,6 +1,5 @@
 import java.util.Scanner;
-
-public class Main {
+class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -20,8 +19,13 @@ public class Main {
         player2.setBetNumber(numberPlayer2);
 
         Roulette roulette = new Roulette();
-        roulette.spinWheel();
+        roulette.performSpinWheel(); // Виклик закритого методу через допоміжний метод
         int winningNumber = roulette.getCurrentWinningNumber();
+        roulette.performSetCurrentWinningNumber(10); // Виклик закритого методу через допоміжний метод
+
+        AdditionalClass.firstStaticMethod();
+        AdditionalClass.secondStaticMethod();
+
 
         double totalBets = player1.getBetAmount() + player2.getBetAmount();
         casino.collectBets(totalBets);
@@ -40,7 +44,16 @@ public class Main {
         player1.customMethod(player2);
         casino.customMethod(player1);
         roulette.customMethod(casino);
+
+        // Виклик нових методів для збільшення значень удвічі
+        player1.doubleMoney();
+        casino.doubleBalance();
+
+        // Виклик методу для використання змінних інших класів
+        player1.useOtherClassVariables(casino);
+        casino.useOtherClassVariables(player1);
     }
+
     private static void handleWinning(Players player, int winningNumber, Croupier casino) {
         if (winningNumber == player.getBetNumber()) {
             int payout = player.getBetAmount() * 36;
