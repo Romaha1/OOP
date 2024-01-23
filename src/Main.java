@@ -11,6 +11,14 @@ public class Main {
         player1.makeBet(scanner);
         player2.makeBet(scanner);
 
+        System.out.print("Гравець 1, введіть число на яке ви хочете зробити ставку: ");
+        int numberPlayer1 = scanner.nextInt();
+        player1.setBetNumber(numberPlayer1);
+
+        System.out.print("Гравець 2, введіть число на яке ви хочете зробити ставку: ");
+        int numberPlayer2 = scanner.nextInt();
+        player2.setBetNumber(numberPlayer2);
+
         Roulette roulette = new Roulette();
         roulette.spinWheel();
         int winningNumber = roulette.getCurrentWinningNumber();
@@ -24,10 +32,17 @@ public class Main {
         System.out.println("Баланс казино: " + casino.getCasinoBalance() + " $.");
         System.out.println(player1.getPlayerName() + " має " + player1.getPlayerMoney() + " $.");
         System.out.println(player2.getPlayerName() + " має " + player2.getPlayerMoney() + " $.");
-    }
 
+        // Додавання виклику рекурсивного методу
+        player1.recursiveMethod("Initial message", 3);
+
+        // Виклик новостворених методів
+        player1.customMethod(player2);
+        casino.customMethod(player1);
+        roulette.customMethod(casino);
+    }
     private static void handleWinning(Players player, int winningNumber, Croupier casino) {
-        if (winningNumber == player.getBetAmount()) {
+        if (winningNumber == player.getBetNumber()) {
             int payout = player.getBetAmount() * 36;
             player.setPlayerMoney(player.getPlayerMoney() + payout);
             casino.payOutWinners(payout);

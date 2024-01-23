@@ -1,4 +1,4 @@
-class Roulette {
+class Roulette extends GameEntity{
     private int currentWinningNumber;
 
     int getCurrentWinningNumber() {
@@ -8,6 +8,18 @@ class Roulette {
     void setCurrentWinningNumber(int number) {
         this.currentWinningNumber = number;
     }
+    @Override
+    void processInput(double data) {
+        // Логіка для класу Roulette з параметром double
+        System.out.println("Processing input for Roulette with data: " + data);
+    }
+    static Roulette customMethod(Croupier croupier) {
+        // Повернення об'єкта з новими значеннями
+        Roulette roulette = new Roulette();
+        roulette.setCurrentWinningNumber(17);
+        return roulette;
+    }
+
 
     void spinWheel() {
         try {
